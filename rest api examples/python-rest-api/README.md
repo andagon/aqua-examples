@@ -11,9 +11,8 @@ It selects a project based on the name and creates a simple test case with test 
     - Edit the swagger.json and find `"securitySchemes"` and add a correct `tokenUrl` and `scope` to it:
     ```json
     "password": {
-    "tokenUrl": "http://aqua-server/aquaWebNG/api/token",
-        "scopes": {
-            "": ""
+        "tokenUrl": "http://aqua-server/aquaWebNG/api/token",
+        "scopes": {}
     }
     ```
 - Generate aqua rest client: `openapi-python-client --path swagger.json`
