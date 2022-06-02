@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "python-rest-api"
+version = "0.1.0"
+description = ""
+authors = ["Nils Wagener <nils@aqua-cloud.io>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+httpx = ">=0.15.4,<0.23.0"
+aqua-rest-api-client = {path = "../aqua-rest-api-client"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = {version = "^22.3.0", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
