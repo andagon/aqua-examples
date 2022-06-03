@@ -17,5 +17,5 @@ mkdir -p ./screenshots
 popd
 
 # Copy logs into the pickup directory. Those will be uploaded to aqua by the agent
-cp "$PROJECT_FOLDER/geckodriver.log" ./toAttach/
-cp "$PROJECT_FOLDER/screenshots/*" ./toAttach/
+cp    "$PROJECT_FOLDER/geckodriver.log" ./toAttach/
+cp -r "$PROJECT_FOLDER/screenshots"     ./toAttach/

@@ -19,8 +19,9 @@ fi
 
 pushd ../aqua-examples
 
-# Now pull the master branch. We also limit the history
-git pull --depth=1 origin master
+# Fetch current head of master and hard reset onto it
+git fetch --depth=1 origin master
+git reset --hard origin/master
 
 # Setup project
 cd integration\ examples/python-selenium
