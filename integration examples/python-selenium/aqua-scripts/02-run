@@ -3,10 +3,12 @@
 # Exit when a command fails (might cause problems with some pipes)
 set -e
 
-PROJECT_FOLDER="aqua-examples/integration\ examples/python-selenium/"
+PROJECT_FOLDER='../aqua-examples/integration examples/python-selenium'
 
 # Change directory to the project, but remember current directory
-pushd $PROJECT_FOLDER
+pushd "$PROJECT_FOLDER"
+
+mkdir -p ./screenshots
 
 # run testcase
 ./main.py
@@ -15,4 +17,5 @@ pushd $PROJECT_FOLDER
 popd
 
 # Copy logs into the pickup directory. Those will be uploaded to aqua by the agent
-cp $PROJECT_FOLDER/geckodriver.log ./toAttach/
+cp "$PROJECT_FOLDER/geckodriver.log" ./toAttach/
+cp "$PROJECT_FOLDER/screenshots/*" ./toAttach/

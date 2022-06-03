@@ -31,6 +31,8 @@ class PythonTestExample(unittest.TestCase):
 
         self.assertNotIn("No results found.", self.driver.page_source)
 
+        self.driver.save_screenshot("screenshots/page.png")
+
     def tearDown(self) -> None:
         self.driver.quit()
 

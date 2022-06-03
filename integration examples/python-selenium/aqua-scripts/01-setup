@@ -3,13 +3,21 @@
 # Exit when a command fails (might cause problems with some pipes)
 set -e
 
-# Sparse checkout the auqa example repository (we only care about the python selenium project)
-mkdir aqua-example
-pushd aqua-example
-git init
-git remote add -f origin https://github.com/andagon/aqua-examples.git
-git config core.sparseCheckout true
-echo "integration examples/python-selenium" >> .git/info/sparse-checkout
+if [ ! -d "../aqua-examples" ]; then
+    # Sparse checkout the aqua example repository (we only care about the python selenium project)
+    echo "aqua-examples repository does not exist. Run first setup."
+    mkdir -p ../aqua-examples
+    pushd ../aqua-examples
+
+    git init
+    git remote add -f origin https://github.com/andagon/aqua-examples.git
+    git config core.sparseCheckout true
+    echo "integration examples/python-selenium" >> .git/info/sparse-checkout
+
+    popd
+fi
+
+pushd ../aqua-examples
 
 # Now pull the master branch. We also limit the history
 git pull --depth=1 origin master
