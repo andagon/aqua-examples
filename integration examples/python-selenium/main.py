@@ -1,7 +1,6 @@
 #!/bin/sh
 "exec" "`dirname $0`/.venv/bin/python" "$0" "$@"
 
-from time import sleep
 import unittest
 import geckodriver_autoinstaller
 from selenium import webdriver
@@ -20,7 +19,6 @@ class PythonTestExample(unittest.TestCase):
 
         return super().setUp()
 
-
     def test_search_in_python_org(self) -> None:
         self.driver.get("https://www.python.org")
 
@@ -32,7 +30,6 @@ class PythonTestExample(unittest.TestCase):
         elem.send_keys(Keys.RETURN)
 
         self.assertNotIn("No results found.", self.driver.page_source)
-
 
     def tearDown(self) -> None:
         self.driver.quit()
