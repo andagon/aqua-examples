@@ -6,7 +6,7 @@ authors = ["Nils Wagener <nils@aqua-cloud.io>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 selenium = "^4.2.0"
 geckodriver-autoinstaller = "^0.1.0"
 
