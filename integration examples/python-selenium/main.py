@@ -2,20 +2,21 @@
 "exec" "`dirname $0`/.venv/bin/python" "$0" "$@"
 
 import unittest
-import geckodriver_autoinstaller
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.service import Service
 
 
 class PythonTestExample(unittest.TestCase):
 
     def setUp(self) -> None:
-        geckodriver_autoinstaller.install()
+        service = Service(executable_path=GeckoDriverManager().install())
 
         options = webdriver.FirefoxOptions()
         options.headless = True
-        self.driver = webdriver.Firefox(options=options)
+        self.driver = webdriver.Firefox(service=service, options=options)
 
         return super().setUp()
 
