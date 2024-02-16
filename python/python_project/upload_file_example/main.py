@@ -41,7 +41,7 @@ def upload_file(client: AuthenticatedClient, file_path: str) -> None:
 def main():
     aqua_user = os.environ["aqua_user"] # provide user name
     aqua_password = os.environ["aqua_password"] # provide password
-    aqua_base_url = os.environ["aqua_base_url"] # provide aqua url with the folder e.g.: http://domain:port/aquaWebNg
+    aqua_base_url = os.environ["aqua_base_url"] # provide aqua url with the folder e.g.: https://domain:port/aquaWebNG
 
     access_token = get_access_token(aqua_base_url, aqua_user, aqua_password)
     client = AuthenticatedClient(
