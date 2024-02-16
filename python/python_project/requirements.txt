@@ -1,0 +1,1 @@
+../python_aqua_client/aqua-rest-api-client/dist/aqua_rest_api_client-24.8.0.0-py3-none-any.whl
