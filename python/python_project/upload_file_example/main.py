@@ -28,14 +28,13 @@ def get_access_token(
 
 
 def upload_file(client: AuthenticatedClient, file_path: str) -> None:
-    file = open(file_path,"r")
-    data = file.read()
+    with open(file_path,"r") as file:
+        data = file.read()
 
-    file_to_upload = File(file_name=file.name, payload=data)
-    multipart_data = FileUploadFileMultipartData(file=[file_to_upload])
-    result = file_upload_file.sync(client=client, file_name=file.name, multipart_data=multipart_data)
-    print(result)
-    file.close()
+        file_to_upload = File(file_name=file.name, payload=data)
+        multipart_data = FileUploadFileMultipartData(file=[file_to_upload])
+        result = file_upload_file.sync(client=client, file_name=file.name, multipart_data=multipart_data)
+        print(result)
 
 
 def main():
