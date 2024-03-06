@@ -5,6 +5,7 @@ from aqua_rest_api_client import AuthenticatedClient
 from aqua_rest_api_client.api.file import file_upload_file
 from aqua_rest_api_client.models import FileUploadFileMultipartData
 from aqua_rest_api_client.types import File
+import requests
 
 
 def get_access_token(
@@ -27,7 +28,7 @@ def get_access_token(
     return response["access_token"]
 
 
-def upload_file(client: AuthenticatedClient, file_path: str) -> None:
+def upload_file_text_like_file(client: AuthenticatedClient, file_path: str) -> None:
     with open(file_path,"r") as file:
         data = file.read()
 
@@ -35,6 +36,20 @@ def upload_file(client: AuthenticatedClient, file_path: str) -> None:
         multipart_data = FileUploadFileMultipartData(file=[file_to_upload])
         result = file_upload_file.sync(client=client, file_name=file.name, multipart_data=multipart_data)
         print(result)
+
+
+def upload_binary_file(aqua_base_url: str, access_token: str, file_path: str) -> None:
+    with open(file_path,"rb") as file:
+        headers = {
+            "Authorization": f"Bearer {access_token}"
+        }
+        response = requests.post(f"{aqua_base_url}/api/File?fileName={file.name}", data=file.raw, headers=headers)
+        if response.ok:
+            print("Upload complete")
+            print(response.content)
+        else:
+            print("Something went wrong")
+            print(response.content)
 
 
 def main():
@@ -47,7 +62,9 @@ def main():
         base_url=aqua_base_url, token=access_token
     )
 
-    upload_file(client, "test.txt")
+    upload_file_text_like_file(client, "test.txt")
+    
+    upload_binary_file(aqua_base_url, access_token, "test.zip")
 
 if __name__ == "__main__":
    main()
